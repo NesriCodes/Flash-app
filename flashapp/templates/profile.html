@@ -1,0 +1,16 @@
+ {% extends 'base.html' %}
+{% block content %}
+<div class="profile-container">
+
+	
+	<p class="user-input">{{ current_user.username }}</p>
+	
+	<p class="user-input">{{ current_user.email }}</p><br>
+
+	<a href="{{ url_for('update_profile') }}">Update Profile</a>
+
+	
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="title">
+	<h1>Study</h1>
+</div>
+<div class="card-containers">
+
+	{% if prev_url %}
+
+		<span><a href="{{ prev_url }}">Prev</a></span>
+
+	{% endif %}
+
+	{% for flash in  flashes.items %}
+		<div class="card" id="front">
+			<div class="content study">
+				<p class="card-content">{{ flash.front }}</p>
+			</div>
+			<div class="content-choice study-choice">
+				<a class="click-front" href="#">Front</a>
+				<a class="click-back" href="#">Back</a>
+			</div>
+		</div>
+	{% endfor %}
+
+	{% for flash in  flashes.items %}
+		<div class="card" id="back">
+			<div class="content study">
+				<p class="card-content">{{ flash.back }}</p>
+			</div>
+			<div class="content-choice study-choice">
+				<a class="click-front" href="#">Front</a>
+				<a class="click-back" href="#">Back</a>
+			</div>
+		</div>
+	{% endfor %}
+	
+
+	{% if next_url %}
+	{% if flashes.has_next %}
+
+		<span><a href="{{ next_url }}">Next</a></span>
+
+	{% else %}
+
+	<span><p>Next</p></span>
+
+	{% endif %}
+
+		
+
+	{% endif %}
+
+</div>
+<div class="pages">
+{% for page_num in flashes.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=1) %}
+
+		{% if page_num %}
+			{% if flashes.page == page_num %}
+				<a class="activated-link" href="{{ url_for('study', page=page_num) }}">{{ page_num }}</a>
+			{% else %}
+				<a href="{{ url_for('study', page=page_num) }}">{{ page_num }}</a>
+			{% endif %}
+
+		{% else %}
+
+		{% endif %}
+
+	{% endfor %}
+
+</div>
+
+
+<script src="{{ url_for('static', filename='study_file.js') }}"></script>
+{% endblock %}

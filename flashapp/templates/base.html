@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+	<title>Flash App</title>
+</head>
+<body>
+	<nav class="container">
+		<div class="logo"><a href="{{ url_for('home') }}">Flash App</a></div>
+		
+		<div class="settings">
+			{% if current_user.is_authenticated %}
+			<div class="menus">
+				<a class="setting" id="setting" href="#">Setting</a>
+
+			<div class="dropdown-menu">
+				<div class="profile">
+
+					<div class="dropdown">
+						
+							
+						<div class="profile"><a href="{{ url_for('profile') }}">Profile</a></div>						<div class="profile"><a href="{{ url_for('logout') }}">Logout</a></div>
+
+					</div>
+				</div>
+
+
+
+			</div>
+				
+
+			<div class="profile dark-mode"><a href="#">Dark mode</a></div>
+
+			</div>
+			
+
+			{% else %}
+			<div class="user-auth">
+				<div class="profile"><a href="{{ url_for('registration') }}">Register</a></div>
+
+				<div class="profile"><a href="{{ url_for('login') }}">Login</a></div>
+
+			</div>
+			
+
+			{% endif %}
+		</div>
+	</nav>
+
+	{% with messages = get_flashed_messages(with_categories=true) %}
+
+	{% if  messages%}
+
+	{% for catagory, message in messages %}
+
+		<div class="alert alert-{{ catagory }}">
+			{{ message }}
+			
+		</div>
+
+	{% endfor%}
+
+	{% endif %}
+
+
+	{% endwith %}
+	
+	
+
+
+	{% block content %}{% endblock %}
+
+
+	<footer>Made by <a href="#">Nesri</a></footer>
+	
+	<script src="{{ url_for('static', filename='script.js') }}"></script>
+	<script src="{{ url_for('static', filename='darkmode.js') }}"></script>
+	
+	
+</body>
+</html>

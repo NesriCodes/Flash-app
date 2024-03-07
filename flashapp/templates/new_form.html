@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="form ">
+	<form method="post" action="">
+		{{ form.hidden_tag() }}
+		<fieldset>
+			<legend>New Card</legend>
+			<div>
+				{{ form.term.label(class="label") }}<br>
+				{{ form.term (class="input") }}<br>
+			</div>
+			<div>
+				{{ form.definition.label(class="label") }}<br>
+				{{ form.definition( class="input def") }}<br>
+			</div>
+		</fieldset>
+		{{ form.submit(class="submit") }}
+	</form>
+</div>
+{% endblock %}

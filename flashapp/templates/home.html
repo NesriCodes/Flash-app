@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="title">
+	<h1>Flash Cards</h1>
+	<ul>
+		<li><a href="{{ url_for('new_card') }}">New Card</a></li>
+		<li><a href="{{ url_for('study') }}">Study</a></li>
+	</ul>
+</div>
+
+<div id="all-cards">
+
+	{% for flash in flashes %}
+	{% if flash.user_id == current_user.id %}
+
+<div class="card-containers" >
+	
+		<div class="card">
+			<span class="menuBtn">&#xFE19;</span>
+
+			<div class="modal">
+
+
+				<div class="modal-content">
+					<span class="closeBtn">&times;</span>
+					<a class="m-button" href="{{ url_for('update_card', flash_id=flash.id) }}">Edit</a>
+
+
+					<a href="{{ url_for('delete_card', flash_id=flash.id) }}" id="modal" class="m-button">Delete</a> 	
+
+				</div>
+
+			</div>
+
+
+	
+
+			<div class="content">
+				<p>{{ flash.front }}</p>
+			</div>
+			
+			
+
+		
+	</div>
+	</div>
+
+	{% endif %}
+		
+
+	{% endfor %}
+
+</div>
+	
+
+
+{% endblock %}
+
